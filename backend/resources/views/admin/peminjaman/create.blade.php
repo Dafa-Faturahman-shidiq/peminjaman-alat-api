@@ -5,8 +5,10 @@
 
 @section('content')
 
-    <!-- Card Container Form (Light Minimalist Style) -->
+    <!-- Card Container Form  -->
     <div class="max-w-3xl mx-auto bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
+
+        
         
         <!-- Header Card -->
         <div class="p-5 border-b border-slate-200/80 bg-slate-50/50 flex items-center gap-3">

@@ -39,9 +39,22 @@
 
         <!-- Alert Error Session -->
         @if(session('error'))
-            <div class="mb-6 p-4 bg-red-50/80 backdrop-blur-sm border-l-4 border-red-500 text-red-700 rounded-r-xl text-sm shadow-sm flex items-center transform transition-all hover:scale-[1.02]">
-                <svg class="w-5 h-5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"></path></svg>
-                {{ session('error') }}
+            <div class="mb-5 p-4 text-sm text-red-800 bg-red-50 border border-red-200 rounded-2xl flex items-center justify-between shadow-sm transition-all" id="alert-error">
+                <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-red-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="font-bold">{{ session('error') }}</span>
+                </div>
+                <button onclick="document.getElementById('alert-error').remove()" class="text-red-500 hover:text-red-800 font-bold ml-4">✕</button>
+            </div>
+        @endif
+
+        @if(session('success'))
+            <div class="mb-5 p-4 text-sm text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-2xl flex items-center justify-between shadow-sm transition-all" id="alert-success">
+                <div class="flex items-center gap-3">
+                    <svg class="w-5 h-5 text-emerald-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    <span class="font-bold">{{ session('success') }}</span>
+                </div>
+                <button onclick="document.getElementById('alert-success').remove()" class="text-emerald-500 hover:text-emerald-800 font-bold ml-4">✕</button>
             </div>
         @endif
 
