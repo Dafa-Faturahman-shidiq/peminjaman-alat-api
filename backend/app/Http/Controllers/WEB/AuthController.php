@@ -41,9 +41,7 @@ class AuthController extends Controller
             return redirect()->route('login')->with('error', 'Role tidak dikenali');
         }
 
-        return back()->withErrors([
-            'email' => 'Email atau password salah.',
-        ])->only('email'); //! Call to undefined method Illuminate\Http\RedirectResponse::only()
+        return redirect()->route('login')->with('error', 'Email atau password salah');
 
     }
 
