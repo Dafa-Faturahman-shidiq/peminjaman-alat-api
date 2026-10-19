@@ -70,7 +70,7 @@ class petugasController extends Controller
                             'alasan_penolakan' => null
                         ]);
                         $totalDisetujui++;
-                    } else { //! Warning: 1265 Data truncated for column 'status' at row 1 
+                    } else {
                         $detail->update([
                             'status' => 'ditolak',
                             'alasan_penolakan' => $itemData['alasan_penolakan'] ?? 'Stok alat tidak mencukupi'

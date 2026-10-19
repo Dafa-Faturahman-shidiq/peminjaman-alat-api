@@ -30,6 +30,7 @@
                     <option value="dikembalikan" {{ request('status') == 'dikembalikan' ? 'selected' : '' }}>Dikembalikan</option>
                     <option value="telat" {{ request('status') == 'telat' ? 'selected' : '' }}>Telat</option>
                     <option value="ditolak" {{ request('status') == 'ditolak' ? 'selected' : '' }}>Ditolak</option>
+                    <option value="disetujui_parsial" {{ request('status') == 'disetujui_parsial' ? 'selected' : '' }}>Disetujui parsial</option>
                 </select>
             </form>
         </div>
@@ -64,12 +65,16 @@
                                                 </div>
 
                                                 <!-- Status Per Item Barang -->
-                                                @if($detail->status == 'disetujui')
-                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-md">Disetujui</span>
-                                                @elseif($detail->status == 'ditolak')
+                                                @if($item->status == 'dipinjam')
+                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-blue-700 bg-blue-50 border border-blue-200 rounded-md">Dipinjam</span>
+                                                @elseif($item->status == 'ditolak')
                                                     <span class="px-2 py-0.5 text-[10px] font-extrabold text-rose-700 bg-rose-50 border border-rose-200 rounded-md">Ditolak</span>
+                                                @elseif($item->status == 'dikembalikan')
+                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-md">Dikembalikan</span>
+                                                @elseif($item->status == 'disetujui_parsial')
+                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-md">Disetujui parsial</span>
                                                 @else
-                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 rounded-md">Menunggu</span>
+                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 rounded-md">Diajukan</span>
                                                 @endif
                                             </div>
 

@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->date('tgl_pinjam');
             $table->date('tgl_kembali_plan');
-            $table->enum('status', ['diajukan','dipinjam', 'dikembalikan', 'telat'])->default('diajukan');
+            $table->enum('status', ['diajukan','dipinjam', 'dikembalikan', 'telat', 'disetujui_parsial', 'ditolak'])->default('diajukan');
             $table->timestamps();
         });
     }
