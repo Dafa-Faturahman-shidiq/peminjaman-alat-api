@@ -116,7 +116,6 @@ class PeminjamanController extends Controller
                     $alat = Alat::lockForUpdate()->findOrFail($item['alat_id']);
 
                     if ($alat->stok < $item['jumlah']) {
-                        // 🛠️ PERBAIKAN: Ditambahkan backslash (\Exception)
                         throw new \Exception("Stok alat '{$alat->nama_alat}' tidak mencukupi. Sisa stok: {$alat->stok}");
                     }
 

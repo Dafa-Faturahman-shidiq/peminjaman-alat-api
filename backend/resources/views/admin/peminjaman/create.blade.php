@@ -8,8 +8,6 @@
     <!-- Card Container Form  -->
     <div class="max-w-3xl mx-auto bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
 
-        
-        
         <!-- Header Card -->
         <div class="p-5 border-b border-slate-200/80 bg-slate-50/50 flex items-center gap-3">
             <div class="w-9 h-9 bg-indigo-50 border border-indigo-200 rounded-xl flex items-center justify-center text-indigo-600 shrink-0">
@@ -71,7 +69,7 @@
                                     class="w-full px-3.5 py-2.5 bg-white border border-slate-200 rounded-xl text-xs font-medium text-slate-800 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 shadow-sm transition-all cursor-pointer">
                                 <option value="">-- Pilih Alat --</option>
                                 @foreach($alats as $alat)
-                                    <option value="{{ $alat->id }}">{{ $alat->nama_alat }} (Stok: {{ $alat->stok }})</option>
+                                    <option value="{{ $alat->id }}" >{{ $alat->nama_alat }} (Stok: {{ $alat->stok }})</option>
                                 @endforeach
                             </select>
                         </div>

@@ -51,13 +51,15 @@ class PeminjamanController extends Controller
     // * CRUD PEMINJAMAN : Menyimpan data peminjaman baru ke database
     public function storePeminjaman(Request $request) //! alat id tidak terdetek pesan eror (The items field is required.)
     {
+        // dd($request->all());
+        
         $request->validate([
             'user_id'          => 'required|exists:users,id',
             'tgl_pinjam'       => 'required|date|after_or_equal:today',
             'tgl_kembali_plan' => 'required|date|after_or_equal:tgl_pinjam',
-            'items'            => 'required|array|min:1',
-            'items.*.alat_id'  => 'required|exists:alat,id|distinct',
-            'items.*.jumlah'   => 'required|integer|min:1',
+            // 'items'            => 'required|array|min:1',
+            // 'items.*.alat_id'  => 'required|exists:alat,id|distinct',
+            // 'items.*.jumlah'   => 'required|integer|min:1',
         ]);
 
         DB::beginTransaction();
@@ -145,7 +147,6 @@ class PeminjamanController extends Controller
 
         // Jika statusnya sedang dipinjam, kembalikan stok terlebih dahulu sebelum dihapus
         if ($peminjaman->status == 'dipinjam') {
-            // 🛠️ PERBAIKAN: Mengubah detailPinjams menjadi detailPinjam
             foreach ($peminjaman->detailPinjam as $detail) {
                 $detail->alat->increment('stok', $detail->jumlah);
             }
