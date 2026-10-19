@@ -15,7 +15,7 @@ class DetailPinjam extends Model
         'jumlah',
         'status',           
         'alasan_penolakan', 
-        'kondisi_kembali', 
+        'kondisi_kembali',
         'denda',           
     ];
 

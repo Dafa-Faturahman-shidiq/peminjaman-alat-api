@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Peminjaman;
-use App\Models\DetailPinjam; // 🛠️ Model utama yang digunakan
+use App\Models\DetailPinjam; 
 use App\Models\Pengembalian;
 use App\Models\Alat;
 use Illuminate\Support\Facades\DB;
