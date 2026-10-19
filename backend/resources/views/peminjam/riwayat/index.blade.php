@@ -72,7 +72,7 @@
                                                 @elseif($item->status == 'dikembalikan')
                                                     <span class="px-2 py-0.5 text-[10px] font-extrabold text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-md">Dikembalikan</span>
                                                 @elseif($item->status == 'disetujui_parsial')
-                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-md">Disetujui parsial</span>
+                                                    <span class="px-2 py-0.5 text-[10px] font-extrabold text-indigo-700 bg-indigo-50 border border-indigo-200 rounded-md">Disetujui & Dipinjam</span>
                                                 @else
                                                     <span class="px-2 py-0.5 text-[10px] font-extrabold text-amber-700 bg-amber-50 border border-amber-200 rounded-md">Diajukan</span>
                                                 @endif
