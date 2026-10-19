@@ -57,9 +57,10 @@ class PeminjamanController extends Controller
             'user_id'          => 'required|exists:users,id',
             'tgl_pinjam'       => 'required|date|after_or_equal:today',
             'tgl_kembali_plan' => 'required|date|after_or_equal:tgl_pinjam',
-            // 'items'            => 'required|array|min:1',
-            // 'items.*.alat_id'  => 'required|exists:alat,id|distinct',
-            // 'items.*.jumlah'   => 'required|integer|min:1',
+            'alat_id' => 'required|array',
+            'alat_id.*' => 'required|exists:alat,id',
+            'jumlah' => 'required|array',
+            'jumlah.*' => 'required|integer|min:1',
         ]);
 
         DB::beginTransaction();
