@@ -100,4 +100,9 @@ class AuthController extends Controller
             'message' => 'Logout berhasil. Token telah dihapus.',
         ]);
     }
+
+    /**
+     * 
+     * ailed to save 'RegisterController.php': Unable to write file 'vscode-remote://wsl+ubuntu/home/rpsc/peminjaman-alat-api/backend/app/Http/Controllers/WEB/RegisterController.php' (NoPermissions (FileSystemError): Error: EACCES: permission denied, open '/home/rpsc/peminjaman-alat-api/backend/app/Http/Controllers/WEB/RegisterController.php')
+     */
 }

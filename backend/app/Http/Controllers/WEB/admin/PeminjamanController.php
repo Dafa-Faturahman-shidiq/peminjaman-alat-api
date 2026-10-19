@@ -49,7 +49,7 @@ class PeminjamanController extends Controller
     }
 
     // * CRUD PEMINJAMAN : Menyimpan data peminjaman baru ke database
-    public function storePeminjaman(Request $request) //! alat id tidak terdetek pesan eror (The items field is required.)
+    public function storePeminjaman(Request $request) 
     {
         // dd($request->all());
         
