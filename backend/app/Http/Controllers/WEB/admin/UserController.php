@@ -27,11 +27,11 @@ class UserController extends Controller
 
         $users = User::when($search, function ($query, $search) {
             return $query->where('name', 'like', "%{$search}%")
-                         ->orWhere('email', 'like', "%{$search}%");
+                        ->orWhere('email', 'like', "%{$search}%");
         })
             ->latest()
             ->paginate(10) // Tampilkan 10 data per halaman  
-            ->withQueryString(); // Agar query string tetap ada saat berpindah halaman pagination
+            ->withQueryString(); 
 
         return view('admin.user.index', compact('users'));
     }
@@ -120,7 +120,6 @@ class UserController extends Controller
             }
 
             // 2. Proteksi: Cek apakah user masih punya transaksi peminjaman aktif
-            // (Pastikan 'user_id' sesuai dengan nama kolom di tabel peminjaman kamu, misal 'peminjam_id')
             $adaPeminjamanAktif = Peminjaman::where('user_id', $user->id)
                 ->whereIn('status', ['diajukan', 'dipinjam', 'disetujui_parsial', 'telat'])
                 ->exists();

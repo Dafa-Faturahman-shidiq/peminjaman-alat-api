@@ -45,6 +45,7 @@
                         <th class="py-4 px-6">Rencana Kembali</th>
                         <th class="py-4 px-6 text-center">Status Utama</th>
                         <th class="py-4 px-6 text-right">Denda / Catatan</th>
+                        <th class="py-4 px-6 text-right">kembalikan</th>
                     </tr>
                 </thead>
                 <tbody class="text-slate-600 text-xs divide-y divide-slate-100 font-medium">
@@ -119,6 +120,25 @@
                                     </div>
                                 @else
                                     <span class="text-slate-400">-</span>
+                                @endif
+                            </td>
+
+                            <!-- Tombol Kembalikan -->
+                            <td class="py-4 px-6 text-right whitespace-nowrap">
+                                @if($item->status === 'dipinjam' || $item->status === 'disetujui_parsial')
+                                    <form action="{{ route('peminjam.kembalikan', $item->id) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin mengembalikan peminjaman ini?');">
+                                        @csrf
+                                        @method('PUT')
+                                        <button type="submit" class="px-3 py-1 text-[10px] font-extrabold text-white bg-emerald-600 border border-emerald-700 rounded-md shadow-sm hover:bg-emerald-700 transition">
+                                            Kembalikan
+                                        </button>
+                                    </form>
+                                @elseif($item->status === 'ditolak')
+                                    <span class="text-slate-400">Ditolak</span>
+                                @elseif($item->status === 'diajukan')
+                                    <span class="text-slate-400">Diajukan</span>
+                                @else
+                                    <span class="text-slate-400">Selesai</span>
                                 @endif
                             </td>
                         </tr>

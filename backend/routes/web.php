@@ -22,6 +22,9 @@ Route::get('/', function () {
 Route::middleware('guest')->group(function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
+
+    Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+    Route::post('/register', [AuthController::class, 'register']);
 });
 
 // * ROUTES UNTUK LOGOUT
@@ -88,4 +91,5 @@ Route::middleware(['auth', 'role:peminjam'])->prefix('peminjam')->name('peminjam
     Route::get('/katalog', [PeminjamController::class, 'indexKatalog'])->name('katalog.index');
     Route::post('/peminjaman', [PeminjamController::class, 'storePeminjaman'])->name('peminjaman.store');
     Route::get('/riwayat', [PeminjamController::class, 'riwayatPeminjaman'])->name('riwayat.index');
+    Route::put('/riwayat/{id}/kembalikan', [PeminjamController::class, 'kembalikan'])->name('kembalikan');
 });

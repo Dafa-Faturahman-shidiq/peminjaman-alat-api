@@ -90,9 +90,29 @@ class PeminjamController extends Controller
                 return $query->where('status', $status);
             })
             ->latest()
-            ->paginate(10)
+            ->paginate(5)
             ->withQueryString();
 
         return view('peminjam.riwayat.index', compact('peminjamans', 'status'));
+    }
+
+    // * Proses Pengembalian
+    public function kembalikan($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+
+        if ($peminjaman->user_id !== auth()->id()) {
+            return redirect()->route('peminjam.riwayat.index')->with('error', 'Anda tidak memiliki izin untuk mengembalikan peminjaman ini.');
+        }
+
+        if (!in_array($peminjaman->status, ['dipinjam', 'disetujui_parsial'])) {
+            return redirect()->route('peminjam.riwayat.index')->with('error', 'Peminjaman ini tidak dapat dikembalikan karena statusnya bukan dipinjam atau disetujui parsial.');
+        }
+
+        $peminjaman->status = 'dikembalikan';
+        $peminjaman->save();
+
+        return redirect()->route('peminjam.riwayat.index')->with('success', 'Peminjaman berhasil dikembalikan dan menunggu konfirmasi petugas.');
+
     }
 }

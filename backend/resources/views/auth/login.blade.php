@@ -104,6 +104,10 @@
                 </div>
             </div>
 
+            <p class="text-center ">
+                <a href="{{ route('register')}} " class="text-slate-700 text-sm font-semibold mb-2 transition-colors group-focus-within:text-indigo-600">Belum Punya akun <span class="text-blue-600">Daftar Sekarang</span></a>
+            </p>
+
             <!-- Tombol Submit -->
             <div class="pt-2">
                 <!-- Tambahkan class 'group' di button ini untuk memicu animasi panah -->
