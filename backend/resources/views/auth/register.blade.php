@@ -80,7 +80,7 @@
                     </div>
                     <input type="text" name="name" value="{{ old('name') }}" required
                            class="w-full pl-12 pr-4 py-3.5 bg-slate-50/50 border border-slate-200 rounded-xl text-slate-800 outline-none transition-all duration-300 focus:bg-white focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 hover:border-slate-300 shadow-sm"
-                           placeholder="badrul@gmail.com">
+                           placeholder="Nama Lengkap">
                 </div>
             </div>
 

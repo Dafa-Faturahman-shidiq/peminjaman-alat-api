@@ -13,6 +13,7 @@ use App\Http\Controllers\WEB\admin\PengembalianController;
 use App\Http\Controllers\WEB\petugasController;
 use App\Http\Controllers\WEB\PeminjamController;
 use App\Http\Controllers\WEB\AuthController;
+use App\Http\Controllers\WEB\ProfileController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +26,12 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
     Route::post('/register', [AuthController::class, 'register']);
+});
+
+// Rute Profil Umum (Semua Role yang Login)
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 });
 
 // * ROUTES UNTUK LOGOUT

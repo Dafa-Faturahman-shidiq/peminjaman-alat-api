@@ -2,23 +2,19 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-use Laravel\Scout\Searchable; // 1. Import Scout Searchable
+use Laravel\Scout\Searchable;
 
 class User extends Authenticatable
 {
-    use Searchable; // 2. Gunakan trait Searchable di sini
-    use HasApiTokens, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
+    use Searchable;
     use SoftDeletes;
-    
 
     protected $table = 'users';
 
@@ -27,50 +23,51 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'no_hp', 
+        'no_hp',
         'alamat',
         'foto_profil',
     ];
-    
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
 
-    // fungsi untuk mengatur tipe data dari atribut password
     protected function casts(): array
     {
         return [
             'email_verified_at' => 'datetime',
-            'password' => 'hashed',// Laravel otomatis meng-hash teks apapun yang masuk ke properti password!
+            'password'          => 'hashed',
         ];
     }
 
-    // 3. Tentukan kolom apa saja yang masuk ke index pencarian Elasticsearch
+    /**
+     * Data yang dimasukkan ke index pencarian Laravel Scout
+     */
     public function toSearchableArray(): array
     {
         return [
-            'id' => $this->id,
-            'nama_alat' => $this->nama_alat,
-            'status_kondisi' => $this->status_kondisi,
+            'id'     => (int) $this->id,
+            'name'   => $this->name,
+            'email'  => $this->email,
+            'role'   => $this->role,
+            'no_hp'  => $this->no_hp,
         ];
     }
 
-    // fungsi untuk mengatur relasi antara model User dan model Peminjaman
-    public function peminjaman() 
+    /**
+     * Relasi ke transaksi peminjaman
+     */
+    public function peminjaman(): HasMany
     {
         return $this->hasMany(Peminjaman::class);
     }
 
-    // fungsi untuk mengatur relasi antara model User dan model logAktivitas
-    public function logAktivitas()
+    /**
+     * Relasi ke log aktivitas
+     */
+    public function logAktivitas(): HasMany
     {
         return $this->hasMany(LogAktivitas::class);
-    }
-
-    // fungsi untuk scope query untuk mengambil data alat yang tersedia (stok > 0 dan status_kondisi = 'baik')
-    public function scopeTersedia($query)
-    {
-        return $query->where('stok', '>', 0)->where('status_kondisi', 'baik');
     }
 }

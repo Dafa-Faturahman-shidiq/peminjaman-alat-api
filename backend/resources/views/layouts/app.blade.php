@@ -4,11 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Dashboard Admin')</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
     <style>
-        /* Animasi Transisi Halus */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
@@ -16,8 +13,6 @@
         .animate-fade-in {
             animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
-
-        /* Custom Scrollbar Minimalis */
         ::-webkit-scrollbar { width: 5px; height: 5px; }
         ::-webkit-scrollbar-track { background: transparent; }
         ::-webkit-scrollbar-thumb { background: #e2e8f0; border-radius: 4px; }
@@ -107,17 +102,21 @@
             </nav>
 
             <!-- User Profile Card -->
-            <div class="p-3 m-3 mt-auto bg-slate-50 border border-slate-200 rounded-xl transition-all duration-200 hover:border-slate-300">
+            <a href="{{ route('profile.edit') }}" class="p-3 m-3 mt-auto bg-slate-50 border border-slate-200 rounded-xl transition-all duration-200 hover:border-indigo-300 hover:bg-indigo-50/50 group block">
                 <div class="flex items-center gap-3">
-                    <div class="w-8 h-8 rounded-lg bg-indigo-100 border border-indigo-200 flex items-center justify-center text-xs text-indigo-700 font-bold shrink-0">
-                        {{ strtoupper(substr(auth()->user()?->name ?? 'A', 0, 1)) }}
-                    </div>
+                    @if(auth()->user()?->foto_profil)
+                        <img src="{{ asset('storage/' . auth()->user()->foto_profil) }}" alt="Foto Profil" class="w-8 h-8 rounded-lg object-cover border border-indigo-200 shrink-0">
+                    @else
+                        <div class="w-8 h-8 rounded-lg bg-indigo-100 border border-indigo-200 flex items-center justify-center text-xs text-indigo-700 font-bold shrink-0">
+                            {{ strtoupper(substr(auth()->user()?->name ?? 'A', 0, 1)) }}
+                        </div>
+                    @endif
                     <div class="flex flex-col min-w-0">
-                        <span class="text-[10px] text-slate-400 font-medium leading-tight">Logged in as</span>
-                        <span class="text-xs text-slate-800 font-bold truncate">{{ auth()->user()?->name ?? 'Administrator' }}</span>
+                        <span class="text-[10px] text-slate-400 font-medium leading-tight group-hover:text-indigo-600">Kelola Profil</span>
+                        <span class="text-xs text-slate-800 font-bold truncate group-hover:text-indigo-700">{{ auth()->user()?->name ?? 'Administrator' }}</span>
                     </div>
                 </div>
-            </div>
+            </a>
         </aside>
 
         <!-- MAIN CONTENT CONTAINER -->
@@ -142,7 +141,6 @@
 
             <!-- KONTEN UTAMA HALAMAN -->
             <main class="flex-1 p-8 animate-fade-in">
-                @include('partials.alerts')
                 @yield('content')
             </main>
 
